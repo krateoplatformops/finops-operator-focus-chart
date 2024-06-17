@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "finops-operator-focus-chart.fullname" . }}-repo-envvar-configmap-focus-md2d926d4b
+  labels:
+  {{- include "finops-operator-focus-chart.labels" . | nindent 4 }}
+data:
+  REPO: {{ .Values.repoEnvvarConfigmapFocusMd2D926D4B.repo | quote }}

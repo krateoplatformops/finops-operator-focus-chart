@@ -5,4 +5,4 @@ metadata:
   labels:
   {{- include "finops-operator-focus-chart.labels" . | nindent 4 }}
 data:
-  REPO: {{ .Values.repoEnvvarConfigmapFocus.repo | quote }}
+  REGISTRY: {{ .Values.env.REGISTRY | quote }}

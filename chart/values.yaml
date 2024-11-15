@@ -95,5 +95,5 @@ serviceAccount:
 imagePullSecrets: 
   - name: registry-credentials
 
-repoEnvvarConfigmapFocus:
-  repo: ghcr.io/krateoplatformops
+env:
+  REGISTRY: ghcr.io/krateoplatformops

@@ -1,48 +1,6 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: {{ include "finops-operator-focus-chart.fullname" . }}-leader-election
-  labels:
-    app.kubernetes.io/component: rbac
-    app.kubernetes.io/created-by: operator-focus
-    app.kubernetes.io/part-of: operator-focus
-  {{- include "finops-operator-focus-chart.labels" . | nindent 4 }}
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  verbs:
-  - get
-  - list
-  - watch
-  - create
-  - update
-  - patch
-  - delete
-- apiGroups:
-  - coordination.k8s.io
-  resources:
-  - leases
-  verbs:
-  - get
-  - list
-  - watch
-  - create
-  - update
-  - patch
-  - delete
-- apiGroups:
-  - ""
-  resources:
-  - events
-  verbs:
-  - create
-  - patch
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
   name: {{ include "finops-operator-focus-chart.fullname" . }}-manager
   labels:
   {{- include "finops-operator-focus-chart.labels" . | nindent 4 }}
@@ -129,26 +87,3 @@ rules:
   verbs:
   - list
   - watch
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: {{ include "finops-operator-focus-chart.fullname" . }}-proxy
-  labels:
-    app.kubernetes.io/component: kube-rbac-proxy
-    app.kubernetes.io/created-by: operator-focus
-    app.kubernetes.io/part-of: operator-focus
-  {{- include "finops-operator-focus-chart.labels" . | nindent 4 }}
-rules:
-- apiGroups:
-  - authentication.k8s.io
-  resources:
-  - tokenreviews
-  verbs:
-  - create
-- apiGroups:
-  - authorization.k8s.io
-  resources:
-  - subjectaccessreviews
-  verbs:
-  - create

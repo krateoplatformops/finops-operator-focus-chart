@@ -5,4 +5,6 @@ metadata:
   labels:
   {{- include "finops-operator-focus-chart.labels" . | nindent 4 }}
 data:
-  REGISTRY: {{ .Values.env.REGISTRY | quote }}
+  {{- range $key, $value := .Values.env }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }} 

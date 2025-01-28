@@ -3,9 +3,6 @@ kind: RoleBinding
 metadata:
   name: {{ include "finops-operator-focus-chart.fullname" . }}-leader-election
   labels:
-    app.kubernetes.io/component: rbac
-    app.kubernetes.io/created-by: operator-focus
-    app.kubernetes.io/part-of: operator-focus
   {{- include "finops-operator-focus-chart.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -13,7 +10,7 @@ roleRef:
   name: '{{ include "finops-operator-focus-chart.fullname" . }}-leader-election'
 subjects:
 - kind: ServiceAccount
-  name: '{{ include "finops-operator-focus-chart.fullname" . }}-controller-manager'
+  name: {{ include "finops-operator-focus-chart.serviceAccountName" . }}
   namespace: '{{ .Release.Namespace }}'
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -21,9 +18,6 @@ kind: RoleBinding
 metadata:
   name: {{ include "finops-operator-focus-chart.fullname" . }}-manager
   labels:
-    app.kubernetes.io/component: rbac
-    app.kubernetes.io/created-by: operator-focus
-    app.kubernetes.io/part-of: operator-focus
   {{- include "finops-operator-focus-chart.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -31,5 +25,5 @@ roleRef:
   name: '{{ include "finops-operator-focus-chart.fullname" . }}-manager'
 subjects:
 - kind: ServiceAccount
-  name: '{{ include "finops-operator-focus-chart.fullname" . }}-controller-manager'
+  name: {{ include "finops-operator-focus-chart.serviceAccountName" . }}
   namespace: '{{ .Release.Namespace }}'

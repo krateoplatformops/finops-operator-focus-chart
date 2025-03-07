@@ -1,3 +1,4 @@
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -262,8 +263,9 @@ spec:
                   metricType:
                     default: cost
                     type: string
-                  pollingIntervalHours:
-                    type: integer
+                  pollingInterval:
+                    format: duration
+                    type: string
                   scraperDatabaseConfigRef:
                     properties:
                       name:
@@ -277,7 +279,7 @@ spec:
                   tableName:
                     type: string
                 required:
-                - pollingIntervalHours
+                - pollingInterval
                 - scraperDatabaseConfigRef
                 - tableName
                 type: object
@@ -330,4 +332,4 @@ spec:
     served: true
     storage: true
     subresources:
-      status: {}
+      status: {}  

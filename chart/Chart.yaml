@@ -26,5 +26,5 @@ appVersion: APP_VERSION
 
 dependencies:
   - name: finops-operator-focus-crd
-    version: 0.0.1
+    version: CHART_VERSION
     repository: file://../crd-chart
